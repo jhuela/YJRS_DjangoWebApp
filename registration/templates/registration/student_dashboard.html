@@ -1,16 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Student Dashboard</title>
 </head>
+
 <body>
 
     <h1>Student Dashboard</h1>
 
     <h2>Total Students</h2>
 
-    <p>
-        {{ total_students }}
+    <p id="student-count">0</p>
+
+    <p id="loading-message">
+        Loading students...
+    </p>
+
+    <p id="empty-message" style="display: none;">
+        No students found.
+    </p>
+
+    <p id="error-message" style="display: none;">
+        Unable to load student data.
     </p>
 
     <hr>
@@ -28,6 +42,7 @@
             <td>{{ item.program }}</td>
             <td>{{ item.total }}</td>
         </tr>
+
         {% empty %}
         <tr>
             <td colspan="2">
@@ -35,6 +50,7 @@
             </td>
         </tr>
         {% endfor %}
+
     </table>
 
     <hr>
@@ -52,6 +68,7 @@
             <td>{{ item.year_level }}</td>
             <td>{{ item.total }}</td>
         </tr>
+
         {% empty %}
         <tr>
             <td colspan="2">
@@ -59,6 +76,28 @@
             </td>
         </tr>
         {% endfor %}
+
+    </table>
+
+    <hr>
+
+    <h2>Students</h2>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Program</th>
+                <th>Year Level</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+
+        <tbody id="student-table-body">
+        </tbody>
+
     </table>
 
     <hr>
@@ -67,5 +106,8 @@
         Back to Student List
     </a>
 
+    <script src="{% static 'registration/js/student_dashboard.js' %}"></script>
+
 </body>
+
 </html>
